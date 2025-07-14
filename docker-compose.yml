@@ -5,7 +5,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile.prod  # Will be created later
+      dockerfile: Dockerfile.prod
     environment:
       - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@db:5432/agentforge
       - SECRET_KEY=${SECRET_KEY}
@@ -20,7 +20,7 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile.prod  # Will be created later
+      dockerfile: Dockerfile.prod
     ports:
       - "80:80"
     depends_on:

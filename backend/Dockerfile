@@ -11,11 +11,15 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+# Clone AgentForge repository for integration
+RUN git clone https://github.com/DataBassGit/AgentForge.git /agentforge
+
 # Copy requirements first for better caching
 COPY requirements.txt .
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies (including AgentForge)
+RUN pip install --no-cache-dir -r requirements.txt && \
+    pip install -e /agentforge
 
 # Copy application code
 COPY . .
