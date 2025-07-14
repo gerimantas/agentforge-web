@@ -1,3 +1,18 @@
+<!-- 
+═══════════════════════════════════════════════════════════════════
+🔒 READ-ONLY REFERENCE DOCUMENT 🔒
+═══════════════════════════════════════════════════════════════════
+
+This is the ORIGINAL action plan and should NOT be modified.
+
+For progress tracking and updates, use:
+• checklist.md - Quick checklist format with completion status
+• progress-tracker.md - Detailed progress tracking with notes
+
+This document serves as the authoritative reference for the project scope.
+═══════════════════════════════════════════════════════════════════
+-->
+
 # AgentForge-Web Development Action Plan
 
 ## Project Overview
@@ -55,7 +70,7 @@ agentforge-web/
 │   │   │   └── Login.tsx
 │   │   ├── hooks/
 │   │   │   ├── useAgent.ts
-│   │   │   └── useAuth.ts
+│   │   │   └── useAuth.tsx
 │   │   ├── services/
 │   │   │   └── api.ts
 │   │   ├── types/

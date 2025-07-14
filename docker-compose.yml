@@ -1,0 +1,47 @@
+# Default docker-compose file for production
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod  # Will be created later
+    environment:
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@db:5432/agentforge
+      - SECRET_KEY=${SECRET_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - SERPER_API_KEY=${SERPER_API_KEY}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS}
+    depends_on:
+      - db
+    networks:
+      - agentforge-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod  # Will be created later
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - agentforge-network
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: agentforge
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - agentforge-network
+
+volumes:
+  postgres_data:
+
+networks:
+  agentforge-network:
+    driver: bridge
